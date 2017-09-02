@@ -29,13 +29,30 @@ table {
   }
 }
 
-.LoanDetails {
+.LoanAmountDetails {
   border: 2px solid grey;
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
+  width: 400px;
+
 }
 
-.moneyInput {
+td {
+  border: 4px;
+}
+
+.column-heading {
+  text-align: right;
+  font-weight: bold;
+}
+
+.money-input {
     border: 1px;
+    width: 60px;
+}
+
+.rounded-percentage {
+  width: 40px;
+  border:1px;
 }
