@@ -10,28 +10,27 @@ class FixedExpenses extends React.Component {
       },
       total: 4500
     }
-    this.updateExpense = this.updateExpense.bind(this);
   }
 
-  setTotal() {
+  setTotal = () => {
     var total = Object.values(this.state.expenses).reduce((a,b) => Number(a)+Number(b));
-    this.setState({total: total});
+    var monthlyTotal = (Math.round((total / 12.0) * 100) / 100);
+    this.setState({total: total, monthlyTotal: monthlyTotal});
+    this.props.fixedMonthlyExpensesChangedCallback(monthlyTotal);
   }
 
-  updateExpense(event) {
+  updateExpense = (event) => {
     var fieldId = event.target.id;
     var expenses = this.state.expenses;
     expenses[fieldId] = event.target.value;
     this.setState({expenses: expenses});
-    // console.log(fieldId);
-    // console.log(event.target.value);
-
     this.setTotal();
+
   }
 
   render() {
     return(
-      <div id='FixedExpenses'>
+      <section className='relatedSectionOfNumbers'>
         <table>
           <tbody>
             <tr>
@@ -48,7 +47,7 @@ class FixedExpenses extends React.Component {
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
     )
   }
 

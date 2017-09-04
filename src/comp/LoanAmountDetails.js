@@ -7,43 +7,44 @@ class LoanAmountDetails extends React.Component {
       houseCost: 300000,
       downPercent: 20,
       downAmount: 60000,
-      loanAmount: 240000,
+      loanAmount: 240000
     }
-    this.updateHouseCost = this.updateHouseCost.bind(this);
-    this.updateDownPercent = this.updateDownPercent.bind(this);
-    this.updateLoanAmount = this.updateLoanAmount.bind(this);
-    this.updateDownAmount = this.updateDownAmount.bind(this);
   }
 
-  updateHouseCost(event) {
+  updateHouseCost = (event) => {
     var houseCost = event.target.value;
     var loanAmount = houseCost * (1.0 - (this.state.downPercent / 100.0));
-    var downPercent = ((this.state.downAmount / houseCost) * 100).toPrecision(3);
-    this.setState({houseCost: houseCost, loanAmount: loanAmount, downPercent: downPercent});
+    var downAmount = houseCost - loanAmount;
+    this.setStateAndCallback({houseCost: houseCost, loanAmount: loanAmount, downAmount: downAmount});
   }
 
-  updateDownPercent(event) {
+  updateDownPercent = (event) => {
     var downPercent = event.target.value;
     var loanAmount = this.state.houseCost * (1.0 - (downPercent / 100.0));
     var downAmount = this.state.houseCost - loanAmount;
-    this.setState({downPercent: downPercent, loanAmount: loanAmount, downAmount: downAmount});
+    this.setStateAndCallback({downPercent: downPercent, loanAmount: loanAmount, downAmount: downAmount});
   }
 
-  updateDownAmount(event) {
+  updateDownAmount = (event) => {
     var downAmount  = event.target.value;
     var downPercent = ((downAmount / this.state.houseCost) * 100).toPrecision(3);
     var loanAmount = this.state.houseCost - downAmount;
-    this.setState({downAmount: downAmount, downPercent: downPercent, loanAmount: loanAmount});
+    this.setStateAndCallback({downAmount: downAmount, downPercent: downPercent, loanAmount: loanAmount});
   }
 
-  updateLoanAmount(event) {
+  updateLoanAmount = (event) => {
     var loanAmount = event.target.value;
-    this.setState({loanAmount: loanAmount, downPercent: '', houseCost: '', downAmount: ''});
+    this.setStateAndCallback({loanAmount: loanAmount, downPercent: '', houseCost: '', downAmount: ''});
+  }
+
+  setStateAndCallback = (state) => {
+    this.setState(state);
+    this.props.loanAmountChangedCallback(state.loanAmount);
   }
 
   render() {
     return (
-      <div className='LoanAmountDetails'>
+      <section className='relatedSectionOfNumbers'>
         <table>
           <tbody>
 
@@ -68,7 +69,7 @@ class LoanAmountDetails extends React.Component {
 
           </tbody>
         </table>
-      </div>
+      </section>
     )
   }
 }

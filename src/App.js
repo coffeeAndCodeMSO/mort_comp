@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LoanAmountDetails from './comp/LoanAmountDetails.js'
-import FixedExpenses from './comp/FixedExpenses.js'
+import MortgageComparison from './comp/MortgageComparison.js'
 
 class App extends Component {
   render() {
@@ -12,8 +11,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Mortgage calculator</h2>
         </div>
-        <LoanAmountDetails/>
-        <FixedExpenses/>
+        <MortgageComparison/>
       </div>
     );
   }
