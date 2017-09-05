@@ -4,10 +4,10 @@ class LoanAmountDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      houseCost: 300000,
+      houseCost: 500000,
       downPercent: 20,
-      downAmount: 60000,
-      loanAmount: 240000
+      downAmount: 100000,
+      loanAmount: 400000
     }
   }
 
@@ -48,24 +48,23 @@ class LoanAmountDetails extends React.Component {
         <table>
           <tbody>
 
-          <tr><td className='column-heading' >House Cost</td><td>
-          <span>
-          $<input id='houseCost' value={this.state.houseCost} type='number' min='0' step='1000' onChange={this.updateHouseCost} />
-          </span>
-          </td></tr>
-
-          <tr><td className='column-heading' >Down Payment Amount</td><td>
-          <span>
-          $<input id='downAmount' className='money-input' value={this.state.downAmount} type='number' min='0' step='1000' onChange={this.updateDownAmount} />
-          %<input id='downPercent' className='rounded-percentage' value={this.state.downPercent} type='number' min='0' step='1' onChange={this.updateDownPercent} />
-          </span>
-          </td></tr>
-
-          <tr><td className='column-heading' >Loan Amount</td><td>
-          <span className='moneyInput'>
-          $<input id='loanAmount' value={this.state.loanAmount} type='number' min='0' step='1000' onChange={this.updateLoanAmount} />
-          </span>
-          </td></tr>
+          <tr>
+            <td className='column-heading' >House Cost</td>
+            <td>$<input id='houseCost' value={this.state.houseCost} type='number' min='0' step='1000' onChange={this.updateHouseCost} /></td>
+          </tr>
+          <tr>
+            <td className='column-heading' >Down Payment Amount</td>
+            <td>
+              <span>
+                $<input id='downAmount' className='money-input' value={this.state.downAmount} type='number' min='0' step='1000' onChange={this.updateDownAmount} />
+                %<input id='downPercent' className='rounded-percentage' value={this.state.downPercent} type='number' min='0' step='1' onChange={this.updateDownPercent} />
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td className='column-heading' >Loan Amount</td>
+            <td>$<input id='loanAmount' value={this.state.loanAmount} type='number' min='0' step='1000' onChange={this.updateLoanAmount} /></td>
+          </tr>
 
           </tbody>
         </table>
