@@ -39,26 +39,46 @@ table {
 }
 
 td {
+  padding-right: 4px;
   border: 4px;
 }
 
 .column-heading {
   text-align: right;
   font-weight: bold;
+  font-size: 13px;
+}
+
+.column-data {
+  text-align: left;
+  font-size: 10px;
+  white-space: nowrap;
 }
 
 .minor-column-heading {
   text-align: right;
   font-weight: 400;
+  font-size: 10px;
+}
+
+.minor-data {
+  font-weight: 200;
   font-style: italic;
+  font-size: 9px;
 }
 
-.money-input {
-    border: 1px;
-    width: 60px;
+.moneyInput {
+    text-align: left;
+    border: 2px solid grey;
+    width: 80px;
 }
 
-.rounded-percentage {
+.percentageInput {
   width: 40px;
-  border:1px;
+  border: 2px solid grey;
+}
+
+.sideBySideColumn {
+  float: left;
+  display: inline-block;
 }

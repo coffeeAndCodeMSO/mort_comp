@@ -6,26 +6,29 @@ class FixedExpenses extends React.Component {
     this.state = {
       expenses: {
         propertyTax: 3000,
-        insurance: 1500
+        insurance: 1000
       },
-      total: 4500
+      total: 4000,
+      monthlyTotal: 333.33
     }
   }
 
-  setTotal = () => {
-    var total = Object.values(this.state.expenses).reduce((a,b) => Number(a)+Number(b));
-    var monthlyTotal = (Math.round((total / 12.0) * 100) / 100);
-    this.setState({total: total, monthlyTotal: monthlyTotal});
-    this.props.fixedMonthlyExpensesChangedCallback(monthlyTotal);
+  componentDidMount = () => {
+    this.props.fixedMonthlyExpensesChangedCallback(this.state.monthlyTotal);
+  }
+
+  setStateAndCallback = (state) => {
+    this.setState(state);
+    this.props.fixedMonthlyExpensesChangedCallback(state.monthlyTotal);
   }
 
   updateExpense = (event) => {
     var fieldId = event.target.id;
     var expenses = this.state.expenses;
-    expenses[fieldId] = event.target.value;
-    this.setState({expenses: expenses});
-    this.setTotal();
-
+    expenses[fieldId] = Number(Number(event.target.value).toFixed(2));
+    var total = Number((Object.values(expenses).reduce((a,b) => Number(a)+Number(b))).toFixed(2));
+    var monthlyTotal = Number((total / 12.0).toFixed(2));
+    this.setStateAndCallback({expenses: expenses, total: total, monthlyTotal: monthlyTotal});
   }
 
   render() {
@@ -35,15 +38,17 @@ class FixedExpenses extends React.Component {
           <tbody>
             <tr>
               <td className='column-heading'>Insurance</td>
-              <td>$<input id='insurance' value={this.state.expenses.insurance} type='number' min='0' step='100' onChange={this.updateExpense} /></td>
+              <td className='column-data' >$<input id='insurance' className='moneyInput' value={this.state.expenses.insurance.toFixed(2)} type='number' min='0' step='100' onChange={this.updateExpense} /></td>
             </tr>
             <tr>
               <td className='column-heading'>Property Tax</td>
-              <td>$<input id='propertyTax' value={this.state.expenses.propertyTax} type='number' min='0' step='100' onChange={this.updateExpense} /></td>
+              <td className='column-data' >$<input id='propertyTax' className='moneyInput' value={this.state.expenses.propertyTax.toFixed(2)} type='number' min='0' step='100' onChange={this.updateExpense} /></td>
             </tr>
             <tr>
-              <td className='column-heading'>Total Fixed Expenses</td>
-              <td>$ {this.state.total} </td>
+              <td className='column-heading'>Annual Fixed Expenses</td>
+              <td className='column-data' >${this.state.total.toFixed(2)} </td>
+              <td className='minor-column-heading' >Monthly</td>
+              <td className='minor-data' >${this.state.monthlyTotal.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>

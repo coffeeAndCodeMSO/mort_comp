@@ -10,7 +10,9 @@ class MortgageComparison extends React.Component {
     super(props);
     this.state = {
       loanAmount: 400000,
-      fixedMonthlyExpenses: 300
+      fixedMonthlyExpenses: 300,
+      loanA: {},
+      loanB: {}
     };
   }
 
@@ -27,8 +29,12 @@ class MortgageComparison extends React.Component {
       <div>
         <LoanAmountDetails loanAmountChangedCallback={this.updateLoanAmount} />
         <FixedExpenses fixedMonthlyExpensesChangedCallback={this.updateFixedExpenses} />
-        <LoanDetails loanYears='15' loanAmount={this.state.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />;
-        <LoanDetails loanYears='30' loanAmount={this.state.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />;
+        <div className='sideBySideColumn'>
+          <LoanDetails id='loanA' loanYears='15' loanAmount={this.state.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />
+        </div>
+        <div className='sideBySideColumn'>
+          <LoanDetails id='loanB' loanYears='30' loanAmount={this.state.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />
+        </div>
       </div>
     )
   }
