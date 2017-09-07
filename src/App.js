@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Mortgage calculator</h2>
+          <h2>15 Year Mortgage Versus 30 Year Moratgage</h2>
+          <p>How much can you really save if you choose a 15 year mortgage over a 30?</p>
         </div>
         <MortgageComparison/>
       </div>
