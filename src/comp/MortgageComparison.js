@@ -3,6 +3,7 @@ import React from 'react';
 import LoanAmountDetails from './LoanAmountDetails.js'
 import FixedExpenses from './FixedExpenses.js'
 import LoanDetails from './LoanDetails.js'
+import ComparisonResults from './ComparisonResults.js'
 
 class MortgageComparison extends React.Component {
 
@@ -29,6 +30,7 @@ class MortgageComparison extends React.Component {
       <div>
         <LoanAmountDetails loanAmountChangedCallback={this.updateLoanAmount} />
         <FixedExpenses fixedMonthlyExpensesChangedCallback={this.updateFixedExpenses} />
+        <ComparisonResults />
         <div className='sideBySideColumn'>
           <LoanDetails id='loanA' loanYears='15' loanAmount={this.state.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />
         </div>
