@@ -62,7 +62,7 @@ class MortgageComparison extends React.Component {
       <div>
         <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
         <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
-        <ComparisonResults mort15/>
+        <ComparisonResults mort15={this.state.mort15} mort30={this.state.mort30}/>
         <div className='sideBySideColumn'>
           <LoanDetails id='mort15' mortgage={this.state.mort15} updateMortgageIntRate={this.updateMortgageIntRate} />
         </div>
