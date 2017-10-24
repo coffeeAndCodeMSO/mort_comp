@@ -18,8 +18,10 @@ class MortgageComparison extends React.Component {
       propertyTax: 3000,
       insurance: 1200,
 
-      int_rate_15: 0.03250,
-      int_rate_30: 0.03930
+      int_rates: {
+        mort_15: 0.03250,
+        mort_30: 0.03930
+      }
     };
   }
 
@@ -38,10 +40,21 @@ class MortgageComparison extends React.Component {
     var newState = {}
     newState[fieldId] = newValue
     this.setState(newState)
+    this.recalcMortgages()
+  }
+
+  recalcMortgages = () => {
     this.setState({
-      mort_15: new Mortgage(this.state.loanAmount, this.state.int_rate_15, 15, this.totalMonthlyExpenses()),
-      mort_30: new Mortgage(this.state.loanAmount, this.state.int_rate_30, 30, this.totalMonthlyExpenses()),
+      mort_15: new Mortgage(this.state.loanAmount, this.state.int_rates.mort_15, 15, this.totalMonthlyExpenses()),
+      mort_30: new Mortgage(this.state.loanAmount, this.state.int_rates.mort_30, 30, this.totalMonthlyExpenses()),
     })
+  }
+
+  updateMortgageIntRate = (mortId, newIntRate) => {
+    var newState = { int_rates: this.state.int_rates }
+    newState["int_rates"][mortId] = newIntRate/100
+    this.setState(newState)
+    this.recalcMortgages()
   }
 
   render() {
@@ -51,10 +64,10 @@ class MortgageComparison extends React.Component {
         <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
         <ComparisonResults />
         <div className='sideBySideColumn'>
-          <LoanDetails id='loanA' loanYears='15' loanAmount={this.state.mort_15.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />
+          <LoanDetails id='mort_15' mortgage={this.state.mort_15} updateMortgageIntRate={this.updateMortgageIntRate} />
         </div>
         <div className='sideBySideColumn'>
-          <LoanDetails id='loanB' loanYears='30' loanAmount={this.state.mort_30.loanAmount} fixedMonthlyExpenses={this.state.fixedMonthlyExpenses} />
+          <LoanDetails id='mort_30' mortgage={this.state.mort_30} updateMortgageIntRate={this.updateMortgageIntRate} />
         </div>
       </div>
     )

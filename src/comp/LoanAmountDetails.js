@@ -9,13 +9,13 @@ class LoanAmountDetails extends React.Component {
       houseCost: 500000,
       downAmount: 100000,
       downPercent: 0.20,
-      loanAmount: this.props.loanAmount
+      loanAmount: Number(this.props.loanAmount)
     };
   }
 
   updateLoanAmountInput = (event) => {
     // console.log(event)
-    var newValue = event.target.value
+    var newValue = Number(event.target.value)
     var newState = {}
     switch(event.target.id) {
       case "houseCost":
