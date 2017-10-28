@@ -1,5 +1,5 @@
 import React from 'react';
-import { moneyize, printableAnnualInterestRate, printableMonthlyInterestRate } from '../lib/formatting_helpers'
+import { moneyize } from '../lib/formatting_helpers'
 
 export default class ComparisonResults extends React.Component {
 

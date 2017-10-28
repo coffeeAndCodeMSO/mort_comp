@@ -1,5 +1,6 @@
 import React from 'react';
-import { moneyize, printableAnnualInterestRate, printableMonthlyInterestRate } from '../lib/formatting_helpers'
+
+import { moneyize, printableMonthlyInterestRate } from '../lib/formatting_helpers'
 
 class LoanDetails extends React.Component {
 
@@ -16,7 +17,7 @@ class LoanDetails extends React.Component {
             </tr>
             <tr>
               <td className='column-heading' >Interest Rate</td>
-              <td className='column-data' >%<input id={"interestRate_" + this.props.mortgage.years} className='percentageInput' value={printableMonthlyInterestRate(this.props.mortgage.interestRate)} type='number' min='0.0' step='0.01' onChange={(event) => this.props.updateMortgageIntRate(this.props.id, event.target.value)} /></td>
+              <td className='column-data' >%<input id={"interes tRate_" + this.props.mortgage.years} className='percentageInput' value={printableMonthlyInterestRate(this.props.mortgage.interestRate)} type='number' min='0.0' step='0.01' onChange={(event) => this.props.updateMortgageIntRate(this.props.id, event.target.value)} /></td>
               <td className='minor-column-heading' >Monthly</td>
               <td className='minor-data' >%{printableMonthlyInterestRate(this.props.mortgage.monthlyInterestRate)}</td>
             </tr>
