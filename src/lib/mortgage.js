@@ -60,7 +60,8 @@ export default class Mortgage {
 
   calculate() {
     var term1 = Math.pow((1.0 + this.monthlyInterestRate), this.months);
-    this._principalAndInterestPayment  = ((this.loanAmount * this.monthlyInterestRate * term1) / (term1 - 1.0));
+    var term2  = ((this.loanAmount * this.monthlyInterestRate * term1) / (term1 - 1.0));
+    this._principalAndInterestPayment  = (parseInt(term2*100)) / 100.0;
     this._minimumMonthlyPayment = this._principalAndInterestPayment + this.fixedMonthlyExpenses;
   }
 
