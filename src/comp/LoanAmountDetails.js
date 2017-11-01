@@ -63,7 +63,6 @@ class LoanAmountDetails extends React.Component {
             <td className='column-heading' >Loan Amount</td>
             <td className='column-data' >$<input id='loanAmount' className='moneyInput' value={moneyize(this.state.loanAmount)} type='number' min='0' step='1000' onChange={this.updateLoanAmountInput} /></td>
           </tr>
-
           </tbody>
         </table>
       </section>

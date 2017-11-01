@@ -35,7 +35,6 @@ table {
   margin: 5px;
   border-radius: 5px;
   width: 400px;
-
 }
 
 td {
@@ -81,4 +80,9 @@ td {
 .sideBySideColumn {
   float: left;
   display: inline-block;
+}
+
+.row {
+  float: left;
+  display: block;
 }
