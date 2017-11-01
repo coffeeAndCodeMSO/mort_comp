@@ -4,7 +4,7 @@ import { moneyize, printableAnnualInterestRate, printableMonthlyInterestRate } f
 export default class ComparisonResults extends React.Component {
 
   paymentDiff = () => {
-    return (this.props.mort30.minimumMonthlyPayment - this.props.mort15.minimumMonthlyPayment)
+    return (this.props.mortB.minimumMonthlyPayment - this.props.mortA.minimumMonthlyPayment)
   }
 
   render = () => {

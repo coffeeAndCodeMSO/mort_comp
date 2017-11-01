@@ -12,21 +12,21 @@ class MortgageComparison extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mort15: new Mortgage(400000, 0.03250, 15, 350.00),
-      mort30: new Mortgage(400000, 0.03930, 30, 350.00),
+      mortA: new Mortgage(400000, 0.03250, 15, 350.00),
+      mortB: new Mortgage(400000, 0.03930, 30, 350.00),
 
       loanAmount: 400000,
       propertyTax: 3000,
       insurance: 1200,
 
       years: {
-        mort15: 15,
-        mort30: 30
+        mortA: 15,
+        mortB: 30
       },
 
       interestRates: {
-        mort15: 0.03250,
-        mort30: 0.03930
+        mortA: 0.03250,
+        mortB: 0.03930
       }
     };
   }
@@ -51,8 +51,8 @@ class MortgageComparison extends React.Component {
 
   recalcMortgages = () => {
     this.setState({
-      mort15: new Mortgage(this.state.loanAmount, this.state.interestRates.mort15, 15, this.totalMonthlyExpenses()),
-      mort30: new Mortgage(this.state.loanAmount, this.state.interestRates.mort30, 30, this.totalMonthlyExpenses()),
+      mortA: new Mortgage(this.state.loanAmount, this.state.interestRates.mortA, 15, this.totalMonthlyExpenses()),
+      mortB: new Mortgage(this.state.loanAmount, this.state.interestRates.mortB, 30, this.totalMonthlyExpenses()),
     })
   }
 
@@ -72,22 +72,22 @@ class MortgageComparison extends React.Component {
         <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
         <div className='row'>
           <div className='sideBySideColumn'>
-            <LoanParameters mortname='mort15' years={this.state.years.mort15} interestRate={this.state.interestRates.mort15} updateinterestRate={this.updateMortgageinterestRate} />
+            <LoanParameters mortname='mortA' years={this.state.years.mortA} interestRate={this.state.interestRates.mortA} updateinterestRate={this.updateMortgageinterestRate} />
           </div>
           <div className='sideBySideColumn'>
-            <LoanParameters mortname='mort30' years={this.state.years.mort30} interestRate={this.state.interestRates.mort30} updateinterestRate={this.updateMortgageinterestRate} />
+            <LoanParameters mortname='mortB' years={this.state.years.mortB} interestRate={this.state.interestRates.mortB} updateinterestRate={this.updateMortgageinterestRate} />
           </div>
         </div>
         <div className='row'>
           <div className='sideBySideColumn'>
-            <LoanDetails id='mort15' mortgage={this.state.mort15} />
+            <LoanDetails id='mortA' mortgage={this.state.mortA} />
           </div>
           <div className='sideBySideColumn'>
-            <LoanDetails id='mort30' mortgage={this.state.mort30} />
+            <LoanDetails id='mortB' mortgage={this.state.mortB} />
           </div>
         </div>
         <div className='row'>
-          <ComparisonResults mort15={this.state.mort15} mort30={this.state.mort30}/>
+          <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
         </div>
       </div>
     )
