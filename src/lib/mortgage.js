@@ -72,4 +72,10 @@ export default class Mortgage {
   get minimumMonthlyPayment() {
     return this._minimumMonthlyPayment;
   }
+
+  get totalLifetimePayments() {
+    // this is naive... it assume the loan is payed back at the minimum required rate.
+    // this should be improved but for now it does someting useful
+    return (this._minimumMonthlyPayment * this.months)
+  }
 };

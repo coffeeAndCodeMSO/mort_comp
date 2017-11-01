@@ -34,6 +34,10 @@ class LoanDetails extends React.Component {
               <td className='column-heading' >Total Monthly payment</td>
               <td className='column-data' >${moneyize(this.props.mortgage.minimumMonthlyPayment)}</td>
             </tr>
+            <tr>
+              <td className='column-heading' >Total lifetime payments (naive)</td>
+              <td className='column-data' >${moneyize(this.props.mortgage.totalLifetimePayments)}</td>
+            </tr>
           </tbody>
         </table>
       </div>
