@@ -34,7 +34,7 @@ class LoanAmountDetails extends React.Component {
         newState["loanAmount"] = Math.round(this.state.houseCost - newState["downAmount"]);
         break;
       case "loanAmount":
-        this.setState({loanAmount: Math.round(newValue), downAmount: '', downPercent: '', houseCost: ''});
+        this.setState({loanAmount: newValue, downAmount: '', downPercent: '', houseCost: ''});
         break;
     }
     this.setState(newState);
@@ -63,7 +63,6 @@ class LoanAmountDetails extends React.Component {
             <td className='column-heading' >Loan Amount</td>
             <td className='column-data' >$<input id='loanAmount' className='moneyInput' value={moneyize(this.state.loanAmount)} type='number' min='0' step='1000' onChange={this.updateLoanAmountInput} /></td>
           </tr>
-
           </tbody>
         </table>
       </section>

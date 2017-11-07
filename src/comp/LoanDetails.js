@@ -1,22 +1,23 @@
 import React from 'react';
-import { moneyize, printableAnnualInterestRate, printableMonthlyInterestRate } from '../lib/formatting_helpers'
+import { moneyize, printableMonthlyInterestRate, printableAnnualInterestRate } from '../lib/formatting_helpers'
 
 class LoanDetails extends React.Component {
 
   render() {
     return (
-      <section className='relatedSectionOfNumbers'>
+      <div className='relatedSectionOfNumbers'>
+        <h6>Mortgage {this.props.id == "mortA" ? "A" : "B"} Details</h6>
         <table>
           <tbody>
             <tr>
               <td className='column-heading' >Loan Years</td>
-              <td className='column-data' >{this.props.mortgage.years}</td>
+              <td className='column-data' >%<input id={"years_" + this.id} className='yearInput' value={this.props.mortgage.years} type='number' min='1' step='1' onChange={(event) => this.props.updateMortgageYears(this.props.id, event.target.value)} /></td>
               <td className='minor-column-heading' >Months</td>
               <td className='minor-data' >{this.props.mortgage.months}</td>
             </tr>
             <tr>
               <td className='column-heading' >Interest Rate</td>
-              <td className='column-data' >%<input id={"interestRate_" + this.props.mortgage.years} className='percentageInput' value={printableMonthlyInterestRate(this.props.mortgage.interestRate)} type='number' min='0.0' step='0.01' onChange={(event) => this.props.updateMortgageIntRate(this.props.id, event.target.value)} /></td>
+              <td className='column-data' >%<input id={"interestRate_" + this.id} className='percentageInput' value={printableMonthlyInterestRate(this.props.mortgage.interestRate)} type='number' min='0.0' step='0.01' onChange={(event) => this.props.updateinterestRate(this.props.id, event.target.value)} /></td>
               <td className='minor-column-heading' >Monthly</td>
               <td className='minor-data' >%{printableMonthlyInterestRate(this.props.mortgage.monthlyInterestRate)}</td>
             </tr>
@@ -34,9 +35,13 @@ class LoanDetails extends React.Component {
               <td className='column-heading' >Total Monthly payment</td>
               <td className='column-data' >${moneyize(this.props.mortgage.minimumMonthlyPayment)}</td>
             </tr>
+            <tr>
+              <td className='column-heading' >Total lifetime payments (naive)</td>
+              <td className='column-data' >${moneyize(this.props.mortgage.totalLifetimePayments)}</td>
+            </tr>
           </tbody>
         </table>
-      </section>
+      </div>
     )
   }
 }
