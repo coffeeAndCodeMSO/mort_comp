@@ -7,7 +7,7 @@ branches:
   except:
     - gh-pages
 after_success:
-  - npm run gh-pages-travis
+  - npm run build && npm run gh-pages-travis
 env:
   global:
     - DEPLOY_BRANCH="master"
