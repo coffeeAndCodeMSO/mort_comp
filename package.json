@@ -46,8 +46,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "npm run build && gh-pages -d build",
-    "gh-pages-travis": "gh-pages-travis"
+    "deploy-travis": "gh-pages-travis -d build"
   },
   "jest": {
     "collectCoverageFrom": [
