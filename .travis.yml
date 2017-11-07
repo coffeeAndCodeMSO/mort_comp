@@ -16,3 +16,4 @@ env:
     - SSH_KEY="mort_comp_rsa"
     - GIT_NAME="rschultheis"
     - GIT_EMAIL="robert.schultheis@gmail.com"
+    - CI="false"
