@@ -7,7 +7,7 @@ branches:
   except:
     - gh-pages
 after_success:
-  - npm run gh-pages-travis
+  - npm run build && npm run gh-pages-travis
 env:
   global:
     - DEPLOY_BRANCH="master"
@@ -16,3 +16,4 @@ env:
     - SSH_KEY="mort_comp_rsa"
     - GIT_NAME="rschultheis"
     - GIT_EMAIL="robert.schultheis@gmail.com"
+    - CI="false"
