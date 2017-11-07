@@ -42,14 +42,12 @@
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
   },
-  "devDependencies": {
-    "gh-pages": ">0"
-  },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy" : "npm run build&&gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build",
+    "gh-pages-travis": "gh-pages-travis"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -91,5 +89,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "gh-pages-travis": "^1.0.4"
   }
 }
