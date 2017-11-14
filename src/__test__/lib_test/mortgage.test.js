@@ -1,4 +1,4 @@
-import Mortgage from './mortgage.js'
+import Mortgage from '../../lib/mortgage.js'
 
 describe("Mortgage class", function() {
 
