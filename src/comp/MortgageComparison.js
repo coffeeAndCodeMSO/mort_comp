@@ -69,25 +69,26 @@ class MortgageComparison extends React.Component {
     this.recalcMortgages()
   }
 
-  render() {
-    return (
-      <div>
-        <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
-        <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
-        <div className='row'>
-          <div className='sideBySideColumn'>
-            <LoanDetails id='mortA' mortgage={this.state.mortA} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
+
+    render() {
+      return (
+        <div>
+          <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
+          <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
+          <div className='row'>
+            <div className='sideBySideColumn'>
+              <LoanDetails id='mortA' mortgage={this.state.mortA} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
+            </div>
+            <div className='sideBySideColumn'>
+              <LoanDetails id='mortB' mortgage={this.state.mortB}  updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
+            </div>
           </div>
-          <div className='sideBySideColumn'>
-            <LoanDetails id='mortB' mortgage={this.state.mortB}  updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
+          <div className='row'>
+            <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
           </div>
         </div>
-        <div className='row'>
-          <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
-        </div>
-      </div>
-    )
-  }
+      )
+    }
 }
 
 export default MortgageComparison;
