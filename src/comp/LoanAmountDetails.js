@@ -1,6 +1,8 @@
 import React from 'react';
 import { moneyize, printableSingleDecimalPercent } from '../lib/formatting_helpers'
 
+import InputCell from './InputCell.js';
+
 class LoanAmountDetails extends React.Component {
 
   constructor(props) {
@@ -42,32 +44,33 @@ class LoanAmountDetails extends React.Component {
   }
 
   render() {
+    const handleChange = this.updateLoanAmountInput;
+
     return (
       <section className='relatedSectionOfNumbers'>
-        <table>
-          <tbody>
-          <tr>
-            <td className='column-heading' >House Cost</td>
-            <td className='column-data' >$<input id='houseCost' className='moneyInput' value={moneyize(this.state.houseCost)} type='number' min='0' step='1000' onChange={this.updateLoanAmountInput} /></td>
-          </tr>
-          <tr>
-            <td className='column-heading' >Down Payment Amount</td>
-            <td className='column-data' >
-                $<input id='downAmount' className='moneyInput' value={moneyize(this.state.downAmount)} type='number' min='0' step='1000' onChange={this.updateLoanAmountInput} />
-            </td>
-            <td className='column-data' >
-                %<input id='downPercent' className='percentageInput' value={printableSingleDecimalPercent(this.state.downPercent)} type='number' min='0' step='1' onChange={this.updateLoanAmountInput} />
-            </td>
-          </tr>
-          <tr>
-            <td className='column-heading' >Loan Amount</td>
-            <td className='column-data' >$<input id='loanAmount' className='moneyInput' value={moneyize(this.state.loanAmount)} type='number' min='0' step='1000' onChange={this.updateLoanAmountInput} /></td>
-          </tr>
-
-          </tbody>
-        </table>
+        <InputCell id="houseCost" label="Purchase price"
+          value={this.state.houseCost}
+          onChange={handleChange}
+          step='1000'
+        />
+        <InputCell id="downAmount" label="Down payment amount"
+          value={this.state.downAmount}
+          onChange={handleChange}
+          step='1000'
+        />
+        <InputCell id="downPercent" label="Down payment percent"
+          value={printableSingleDecimalPercent(this.state.downPercent)}
+          onChange={handleChange}
+          step='1'
+          unitLabel='%'
+        />
+        <InputCell id="loanAmount" label="Loan Amount"
+          value={moneyize(this.state.loanAmount)}
+          onChange={handleChange}
+          step='1000'
+        />
       </section>
-    )
+    );
   }
 }
 
