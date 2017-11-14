@@ -36,7 +36,7 @@ class LoanAmountDetails extends React.Component {
         newState["loanAmount"] = Math.round(this.state.houseCost - newState["downAmount"]);
         break;
       case "loanAmount":
-        this.setState({loanAmount: Math.round(newValue), downAmount: '', downPercent: '', houseCost: ''});
+        this.setState({loanAmount: newValue, downAmount: '', downPercent: '', houseCost: ''});
         break;
     }
     this.setState(newState);

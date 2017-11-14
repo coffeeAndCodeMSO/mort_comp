@@ -11,16 +11,21 @@ class MortgageComparison extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mort15: new Mortgage(400000, 0.03250, 15, 350.00),
-      mort30: new Mortgage(400000, 0.03930, 30, 350.00),
+      mortA: new Mortgage(400000, 0.03250, 15, 350.00),
+      mortB: new Mortgage(400000, 0.03930, 30, 350.00),
 
       loanAmount: 400000,
       propertyTax: 3000,
       insurance: 1200,
 
-      intRates: {
-        mort15: 0.03250,
-        mort30: 0.03930
+      years: {
+        mortA: 15,
+        mortB: 30
+      },
+
+      interestRates: {
+        mortA: 0.03250,
+        mortB: 0.03930
       }
     };
   }
@@ -45,14 +50,21 @@ class MortgageComparison extends React.Component {
 
   recalcMortgages = () => {
     this.setState({
-      mort15: new Mortgage(this.state.loanAmount, this.state.intRates.mort15, 15, this.totalMonthlyExpenses()),
-      mort30: new Mortgage(this.state.loanAmount, this.state.intRates.mort30, 30, this.totalMonthlyExpenses()),
+      mortA: new Mortgage(this.state.loanAmount, this.state.interestRates.mortA, this.state.years.mortA, this.totalMonthlyExpenses()),
+      mortB: new Mortgage(this.state.loanAmount, this.state.interestRates.mortB, this.state.years.mortB, this.totalMonthlyExpenses()),
     })
   }
 
-  updateMortgageIntRate = (mortId, newIntRate) => {
-    var newState = { intRates: this.state.intRates }
-    newState["intRates"][mortId] = newIntRate/100
+  updateMortgageInterestRate = (mortId, newinterestRate) => {
+    var newState = { interestRates: this.state.interestRates }
+    newState.interestRates[mortId] = newinterestRate/100
+    this.setState(newState)
+    this.recalcMortgages()
+  }
+
+  updateMortgageYears = (mortId, newYears) => {
+    var newState = { years: this.state.years }
+    newState.years[mortId] = Math.round(Number(newYears))
     this.setState(newState)
     this.recalcMortgages()
   }
