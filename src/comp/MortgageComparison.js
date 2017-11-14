@@ -41,7 +41,6 @@ class MortgageComparison extends React.Component {
   // anytime a field that is a common input to the mortgage changes, this updates
   // common inputs are: loanAmount, fixedExpense Amount
   updateCommonMortgageInput = (fieldId, newValue) => {
-    // console.log(fieldId + " -> " + newValue);
     var newState = {}
     newState[fieldId] = newValue
     this.setState(newState)
