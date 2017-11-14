@@ -69,23 +69,26 @@ class MortgageComparison extends React.Component {
     this.recalcMortgages()
   }
 
-  render() {
-    return (
-      <div>
-        <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
-        <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
-        <ComparisonResults mort15={this.state.mort15} mort30={this.state.mort30}/>
-        <div className="sideBySideRow">
-          <div className='sideBySideColumn'>
-            <LoanDetails id='mort15' mortgage={this.state.mort15} updateMortgageIntRate={this.updateMortgageIntRate} />
+
+    render() {
+      return (
+        <div>
+          <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
+          <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
+          <div className='row'>
+            <div className='sideBySideColumn'>
+              <LoanDetails id='mortA' mortgage={this.state.mortA} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
+            </div>
+            <div className='sideBySideColumn'>
+              <LoanDetails id='mortB' mortgage={this.state.mortB}  updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
+            </div>
           </div>
-          <div className='sideBySideColumn'>
-            <LoanDetails id='mort30' mortgage={this.state.mort30} updateMortgageIntRate={this.updateMortgageIntRate} />
+          <div className='row'>
+            <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
           </div>
         </div>
-      </div>
-    )
-  }
+      )
+    }
 }
 
 export default MortgageComparison;
