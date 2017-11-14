@@ -6,7 +6,7 @@ class LoanDetails extends React.Component {
   render() {
     return (
       <div className='relatedSectionOfNumbers'>
-        <h6>Mortgage {this.props.id == "mortA" ? "A" : "B"} Details</h6>
+        <h4>Mortgage {this.props.id == "mortA" ? "A" : "B"} Details</h4>
         <table>
           <tbody>
             <tr>
