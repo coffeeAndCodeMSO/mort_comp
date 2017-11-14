@@ -44,7 +44,7 @@ td {
 
 .column-data {
   text-align: left;
-  white-space: nowrap;
+  white-space: pre;
 }
 
 .minor-column-heading {
