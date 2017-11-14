@@ -33,10 +33,11 @@ export default class ComparisonResults extends React.Component {
   }
 
   totalPaymentDiffStr = () => {
+    let moreOrLess
     if (this.props.mortA.totalLifetimePayments > this.props.mortB.totalLifetimePayments) {
-      var moreOrLess = " more"
+      moreOrLess = " more"
     } else {
-      var moreOrLess = " less"
+      moreOrLess = " less"
     }
     return("The total lifetime payment for Mortgage A is $" +
            moneyize(Math.abs(this.totalPaymentDiff())) +

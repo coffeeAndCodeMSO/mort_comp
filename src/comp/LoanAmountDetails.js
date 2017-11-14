@@ -16,7 +16,6 @@ class LoanAmountDetails extends React.Component {
   }
 
   updateLoanAmountInput = (event) => {
-    // console.log(event)
     var newValue = Number(event.target.value)
     var newState = {}
     switch(event.target.id) {
@@ -37,6 +36,9 @@ class LoanAmountDetails extends React.Component {
         break;
       case "loanAmount":
         this.setState({loanAmount: newValue, downAmount: '', downPercent: '', houseCost: ''});
+        break;
+      default:
+      this.setState({loanAmount: newValue, downAmount: '', downPercent: '', houseCost: ''});
         break;
     }
     this.setState(newState);

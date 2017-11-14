@@ -1,5 +1,5 @@
 import React from 'react';
-import { moneyize, printableMonthlyInterestRate, printableAnnualInterestRate } from '../lib/formatting_helpers'
+import { moneyize, printableMonthlyInterestRate } from '../lib/formatting_helpers'
 
 class LoanDetails extends React.Component {
 
