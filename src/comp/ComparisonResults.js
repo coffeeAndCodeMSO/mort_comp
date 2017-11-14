@@ -17,7 +17,7 @@ export default class ComparisonResults extends React.Component {
     } else {
       var moreOrLess = " less"
     }
-    return("The payment for Mortgage A is $" +
+    return("Mortgage A is $" +
            moneyize(Math.abs(this.paymentDiff())) +
            moreOrLess + " per month (%" +
            printableSingleDecimalPercent(this.paymentDiffPct()) + ")"
@@ -38,18 +38,19 @@ export default class ComparisonResults extends React.Component {
     } else {
       var moreOrLess = " less"
     }
-    return("The total lifetime payment for Mortgage A is $" +
+    return("Mortgage A wil be $" +
            moneyize(Math.abs(this.totalPaymentDiff())) +
            moreOrLess + " (%" +
-           printableSingleDecimalPercent(this.totalPaymentDiffPct()) + ")")
+           printableSingleDecimalPercent(this.totalPaymentDiffPct()) + ")" +
+         "\n over the life of the loan")
   }
 
   timeDiffStr = () => {
     var yearsDiff = ((this.props.mortA.months - this.props.mortB.months) / 12.0)
     if (yearsDiff < 0) {
-      return("Mortgage A payed off " + Math.abs(yearsDiff.toFixed(1)) + " years sooner")
+      return("Mortgage A  will be payed off " + Math.abs(yearsDiff.toFixed(1)) + " years sooner")
     } else {
-      return("Mortgage A payed off " + yearsDiff.toFixed(1) + " years later")
+      return("Mortgage A will be payed off " + yearsDiff.toFixed(1) + " years later")
     }
   }
 
