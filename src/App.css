@@ -1,16 +1,15 @@
 body {
-
+ background-color: #fff;
 }
 
 .App {
   font-size: 14px;
   line-height: 1.42857143;
 
-  max-width: 1000px;
+  max-width: 860px;
   margin: auto;
   padding-left: 5px;
   padding-right: 5px;
-  border: 1px solid red;
 
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -21,15 +20,26 @@ table {
   }
 }
 
-.relatedSectionOfNumbers {
+.relatedSectionOfNumbers, .conclusionSection {
   border: 1px solid #ccc;
   padding: 5px;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 4px;
-  width: 400px;
+  width: 30vw;
   box-shadow: 0 1px 1px rgba(0,0,0,.075);
+  background-color: #fff;
+}
+.conclusionSection {
+  width: 600px;
+}
+.section-header, h4 {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 td {
@@ -62,9 +72,13 @@ input, .column-data, .minor-data, .money-input, .money-display {
   color: #555;
   padding: 6px 6px;
   font-size: 14px;
-  width: 80px;
+  width: 90px;
   text-align: left;
 }
+.text-display {
+  width: 350px;
+}
+
 
 input {
   border: 1px solid #ccc;

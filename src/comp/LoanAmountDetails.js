@@ -2,6 +2,7 @@ import React from 'react';
 import { moneyize, printableSingleDecimalPercent } from '../lib/formatting_helpers'
 
 import InputCell from './InputCell.js';
+import DisplayCell from './DisplayCell.js';
 
 class LoanAmountDetails extends React.Component {
 
@@ -48,6 +49,7 @@ class LoanAmountDetails extends React.Component {
 
     return (
       <section className='relatedSectionOfNumbers'>
+        <div className="section-header">Loan amount</div>
         <InputCell id="houseCost" label="Purchase price"
           value={this.state.houseCost}
           onChange={handleChange}
@@ -64,10 +66,11 @@ class LoanAmountDetails extends React.Component {
           step='1'
           unitLabel='%'
         />
-        <InputCell id="loanAmount" label="Loan Amount"
-          value={moneyize(this.state.loanAmount)}
-          onChange={handleChange}
-          step='1000'
+        <DisplayCell
+          label="Loan amount"
+          unitLabel="$"
+          value={this.state.loanAmount}
+          formatFormula={moneyize}
         />
       </section>
     );
