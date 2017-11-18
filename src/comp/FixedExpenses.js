@@ -19,11 +19,12 @@ class FixedExpenses extends React.Component {
 
     return(
       <section className='relatedSectionOfNumbers'>
+        <div className="section-header">Ownership costs</div>
         <InputCell id="insurance" label="Insurance, annual"
           value={this.props.insurance}
           onChange={handleChange}
         />
-        <InputCell id="propertyTax" label="Property Tax, annual"
+        <InputCell id="propertyTax" label="Property tax, annual"
           value={this.props.propertyTax}
           onChange={handleChange}
         />
