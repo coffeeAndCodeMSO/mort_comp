@@ -31,7 +31,7 @@ class LoanDetails extends React.Component {
           unitLabel='%'
           value={printableMonthlyInterestRate(this.props.mortgage.interestRate)}
           min='1'
-          step='1'
+          step='0.01'
           onChange={(event) => this.props.updateinterestRate(this.props.id, event.target.value)}
         />
         <DisplayCell
