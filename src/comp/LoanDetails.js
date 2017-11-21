@@ -26,7 +26,7 @@ class LoanDetails extends React.Component {
           value={this.props.mortgage.months}
         />
 
-        <InputCell id={"interestRate_" + this.id}
+        <InputCell id={"interestRate_" + this.props.id}
           label="Annual interest rate"
           unitLabel='%'
           value={printableMonthlyInterestRate(this.props.mortgage.interestRate)}
