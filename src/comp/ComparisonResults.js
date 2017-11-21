@@ -1,6 +1,8 @@
 import React from 'react';
 import { moneyize, printableSingleDecimalPercent } from '../lib/formatting_helpers'
 
+import DisplayCell from './DisplayCell.js';
+
 export default class ComparisonResults extends React.Component {
 
   paymentDiff = () => {
@@ -56,24 +58,23 @@ export default class ComparisonResults extends React.Component {
 
   render = () => {
     return(
-      <div className='relatedSectionOfNumbers' >
-        <p>Summary of differences</p>
-        <table>
-          <tbody>
-            <tr>
-              <td className='column-heading' >Payment</td>
-              <td className='column-data' >{this.paymentDiffStr()}</td>
-            </tr>
-            <tr>
-              <td className='column-heading' >Total loan lifetime payments</td>
-              <td className='column-data' >{this.totalPaymentDiffStr()}</td>
-            </tr>
-            <tr>
-              <td className='column-heading' >Difference in time to payoff loan</td>
-              <td className='column-data' >{this.timeDiffStr()}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className='conclusionSection' >
+        <div className="section-header">Summary</div>
+        <DisplayCell
+          label="Payment"
+          value={this.paymentDiffStr()}
+          displayClass='text-display'
+        />
+        <DisplayCell
+          label="Total loan lifetime payments"
+          value={this.totalPaymentDiffStr()}
+          displayClass='text-display'
+        />
+        <DisplayCell
+          label="Difference in time to payoff loan"
+          value={this.timeDiffStr()}
+          displayClass='text-display'
+        />
       </div>
     )
   }

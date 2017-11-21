@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>15 Year Mortgage Versus 30 Year Mortgage!</h2>
-          <p>How much can you really save if you choose a 15 year mortgage over a 30?</p>
+          <h2>Comparing mortgages</h2>
+          <p>Choosing a shorter-term mortgage means higher monthly payments — but can save you money in the long run.</p>
         </div>
         <MortgageComparison/>
       </div>

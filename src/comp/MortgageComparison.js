@@ -72,9 +72,13 @@ class MortgageComparison extends React.Component {
     render() {
       return (
         <div>
-          <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
-          <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
-          <div className='row'>
+          <div className='layoutRow'>
+            <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
+          </div>
+          <div className='layoutRow'>
+            <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
+          </div>
+          <div className='layoutRow'>
             <div className='sideBySideColumn'>
               <LoanDetails id='mortA' mortgage={this.state.mortA} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
             </div>
@@ -82,7 +86,7 @@ class MortgageComparison extends React.Component {
               <LoanDetails id='mortB' mortgage={this.state.mortB}  updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
             </div>
           </div>
-          <div className='row'>
+          <div className='layoutRow'>
             <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
           </div>
         </div>
