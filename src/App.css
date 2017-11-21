@@ -29,7 +29,7 @@ body {
   display: inline-block;
 }
 
-.relatedSectionOfNumbers, .conclusionSection {
+.relatedSectionOfNumbers, .conclusionSection, .footer {
   display: inline-block;
 
   border: 1px solid #ccc;
@@ -47,12 +47,20 @@ body {
   width: 30vw;
   min-width: 300px;
 }
+
 .conclusionSection {
   width: 100%;
   max-width: 700px;
 }
 
-.section-header, h4 {
+.footer {
+  text-align: center;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+.section-header, .header, h4 {
   font-weight: bold;
   font-size: 1.2em;
   text-align: center;
@@ -61,6 +69,14 @@ body {
   background-color: #1278bc;
   border-radius: 3px;
   color: #fff;
+}
+
+.section-header, h4 {
+  background-color: #1278bc;
+}
+
+.footer-header {
+  background-color: #abc123;
 }
 
 /* Input/Display box styling */
@@ -101,7 +117,3 @@ input, .money-input, .money-display {
 .input-unit, .display-unit {
   margin-right: 3px;
 }
-
-
-
-
