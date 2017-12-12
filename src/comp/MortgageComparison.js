@@ -4,6 +4,7 @@ import LoanAmountDetails from './LoanAmountDetails.js'
 import FixedExpenses from './FixedExpenses.js'
 import LoanDetails from './LoanDetails.js'
 import ComparisonResults from './ComparisonResults.js'
+import Graph from './Graph.js'
 import Mortgage from '../lib/mortgage.js'
 
 class MortgageComparison extends React.Component {
@@ -88,6 +89,9 @@ class MortgageComparison extends React.Component {
           </div>
           <div className='layoutRow'>
             <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
+          </div>
+          <div className='layoutRow'>
+            <Graph />
           </div>
         </div>
       )
