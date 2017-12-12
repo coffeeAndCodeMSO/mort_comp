@@ -3,79 +3,59 @@ import { moneyize, printableSingleDecimalPercent } from '../lib/formatting_helpe
 
 import DisplayCell from './DisplayCell.js';
 
-export default class ComparisonResults extends React.Component {
+const ComparisonResults = ({ mortA, mortB }) => {
 
-  paymentDiff = () => {
-    return (this.props.mortA.minimumMonthlyPayment - this.props.mortB.minimumMonthlyPayment)
-  }
+  let   paymentDiff,
+        paymentDiffPct,
+        totalPaymentDiff,
+        totalPaymentDiffPct,
+        paymentDiffStr,
+        totalPaymentDiffStr,
+        timeDiffStr;
 
-  paymentDiffPct = () => {
-    return (this.props.mortA.minimumMonthlyPayment / this.props.mortB.minimumMonthlyPayment)
-  }
+  paymentDiff = () => mortA.minimumMonthlyPayment - mortB.minimumMonthlyPayment;
+
+  paymentDiffPct = () => mortA.minimumMonthlyPayment / mortB.minimumMonthlyPayment;
+
+  totalPaymentDiff = () => mortA.totalLifetimePayments - mortB.totalLifetimePayments;
+
+  totalPaymentDiffPct = () => 1 - (mortA.totalLifetimePayments / mortB.totalLifetimePayments);
 
   paymentDiffStr = () => {
-    if (this.props.mortA.minimumMonthlyPayment > this.props.mortB.minimumMonthlyPayment) {
-      var moreOrLess = " more"
-    } else {
-      var moreOrLess = " less"
-    }
-    return("Mortgage A is $" +
-           moneyize(Math.abs(this.paymentDiff())) +
-           moreOrLess + " per month (%" +
-           printableSingleDecimalPercent(this.paymentDiffPct()) + ")"
-     )
-  }
-
-  totalPaymentDiff = () => {
-    return (this.props.mortA.totalLifetimePayments - this.props.mortB.totalLifetimePayments)
-  }
-
-  totalPaymentDiffPct = () => {
-    return (1 - (this.props.mortA.totalLifetimePayments / this.props.mortB.totalLifetimePayments))
-  }
+    const moreOrLess =  mortA.minimumMonthlyPayment > mortB.minimumMonthlyPayment ? "more" : "less";
+    return (`Mortgage A is $ ${moneyize(Math.abs(paymentDiff()))} ${moreOrLess} per month (%${printableSingleDecimalPercent(paymentDiffPct())})`);
+  };
 
   totalPaymentDiffStr = () => {
-    if (this.props.mortA.totalLifetimePayments > this.props.mortB.totalLifetimePayments) {
-      var moreOrLess = " more"
-    } else {
-      var moreOrLess = " less"
-    }
-    return("Mortgage A wil be $" +
-           moneyize(Math.abs(this.totalPaymentDiff())) +
-           moreOrLess + " (%" +
-           printableSingleDecimalPercent(this.totalPaymentDiffPct()) + ")" +
-         "\n over the life of the loan")
-  }
+    const moreOrLess =  mortA.totalLifetimePayments > mortB.totalLifetimePayments ? "more" : "less";
+    return (`Mortgage A will be $ ${moneyize(Math.abs(totalPaymentDiff()))} ${moreOrLess} (%${printableSingleDecimalPercent(totalPaymentDiffPct())}) over the life of the loan`);
+  };
 
-  timeDiffStr = () => {
-    var yearsDiff = ((this.props.mortA.months - this.props.mortB.months) / 12.0)
-    if (yearsDiff < 0) {
-      return("Mortgage A  will be payed off " + Math.abs(yearsDiff.toFixed(1)) + " years sooner")
-    } else {
-      return("Mortgage A will be payed off " + yearsDiff.toFixed(1) + " years later")
-    }
-  }
+timeDiffStr = () => {
+  const yearsDiff = (mortA.months - mortB.months) / 12.0;
+  return `Mortgage A  will be payed off ${Math.abs(yearsDiff.toFixed(1))} years ${yearsDiff < 0 ? 'sooner' : 'later'}`;
+};
 
-  render = () => {
-    return(
-      <div className='conclusionSection' >
+  return (
+    <div className='conclusionSection'>
         <div className="section-header">Summary</div>
         <DisplayCell
           label="Payment"
-          value={this.paymentDiffStr()}
+          value={paymentDiffStr()}
           displayClass='text-display'
-        />
+          />
         <DisplayCell
           label="Total loan lifetime payments"
-          value={this.totalPaymentDiffStr()}
+          value={totalPaymentDiffStr()}
           displayClass='text-display'
-        />
+          />
         <DisplayCell
           label="Difference in time to payoff loan"
-          value={this.timeDiffStr()}
+          value={timeDiffStr()}
           displayClass='text-display'
-        />
-      </div>
-    )
-  }
+          />
+    </div>
+  );
 }
+
+export default ComparisonResults;
