@@ -1,5 +1,5 @@
 import React from 'react';
-import { scaleLinear, line, axisBottom, axisLeft } from 'd3';
+import { scaleLinear, line } from 'd3';
 
 import './../Graph.css';
 
@@ -10,26 +10,29 @@ const dummyData = [
 ]
 
 class Graph extends React.Component {
+    // TODO function (elsewhere) to create data structure from MortageComparison functions
+    // Probably keep this component as a 'graph it' 
+    // Add multiple lines at once functionality
+    // Make SVG size responsive
+    
     drawGraphSVG(width, height, data){
         const margin = {top: 20, right: 20, bottom: 30, left: 50};
-        this.plotWidth = width - margin.left - margin.right;
-        this.plotHeight = height - margin.top - margin.bottom;
+        const plotWidth = width - margin.left - margin.right;
+        const plotHeight = height - margin.top - margin.bottom;
 
         const xScale = scaleLinear()
-            .rangeRound([0, this.plotWidth])
+            .rangeRound([0, plotWidth])
             .domain([0,4]);
+            // TODO: Reconfigure domain so it adapts to arbitrary data 
     
         const yScale = scaleLinear()
-            .rangeRound([this.plotHeight, 0])
+            .rangeRound([plotHeight, 0])
             .domain([0,5]);
+            // TODO: Reconfigure domain so it adapts to arbitrary data 
 
-        const xAxis = axisBottom(xScale);
-        const yAxis = axisLeft(yScale);
-
-        const pathGen = line()
+        const path = line()
             .x(function(d) { return xScale(d.x); })
             .y(function(d) { return yScale(d.y); });
-        const dummyPath = pathGen(data);
         
         return (
             <svg width={width} height={height}>
@@ -37,12 +40,12 @@ class Graph extends React.Component {
                     className="plot"
                     transform={`translate(${margin.left},${margin.right})`}    
                 >
-                    <path className='graph-line' d={dummyPath} />
+                    <path className='graph-line' d={path(data)} />
                     <g className='graph-axis x'>
-                        <line  x1={0} y1={this.plotHeight} x2={this.plotWidth} y2={this.plotHeight}/>
+                        <line  x1={0} y1={plotHeight} x2={plotWidth} y2={plotHeight}/>
                     </g>
                     <g className='graph-axis y'>
-                        <line  x1={0} y1={0} x2={0} y2={this.plotHeight}/>
+                        <line  x1={0} y1={0} x2={0} y2={plotHeight}/>
                     </g>
                 </g>
             </svg>
@@ -54,7 +57,7 @@ class Graph extends React.Component {
             <div className='conclusionSection' >
                 <div className="section-header">Graph!</div>
                 <div className="graph">
-                    {this.drawGraphSVG(300,200, dummyData)}
+                    {this.drawGraphSVG(500,200, dummyData)}
                 </div>
             </div>
         )
