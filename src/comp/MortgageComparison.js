@@ -5,6 +5,7 @@ import FixedExpenses from './FixedExpenses.js'
 import LoanDetails from './LoanDetails.js'
 import ComparisonResults from './ComparisonResults.js'
 import Graph from './Graph.js'
+import BarChart from './BarChart.js'
 import Mortgage from '../lib/mortgage.js'
 
 class MortgageComparison extends React.Component {
@@ -27,7 +28,35 @@ class MortgageComparison extends React.Component {
       interestRates: {
         mortA: 0.03250,
         mortB: 0.03930
-      }
+      },
+
+      termData: [
+        { title: 'Terminator', value: 21, year: 1984 },
+        { title: 'Commando', value: 81, year: 1985 },
+        { title: 'Predator', value: 25, year: 1987 },
+        { title: 'Raw Deal', value: 26, year: 1986 },
+        { title: 'The Running Man', value: 11, year: 1987 },
+        { title: 'Total Recall', value: 44, year: 1990 },
+        { title: 'Terminator 2', value: 0, year: 1991 },
+        { title: 'Last Action Hero', value: 22, year: 1993 },
+        { title: 'True Lies', value: 51, year: 1994 },
+        { title: 'Eraser', value: 29, year: 1996 },
+        { title: 'Terminator 3', value: 2, year: 2003 },
+      ],
+
+      dummyData: [
+          {x: 0, y: 2},
+          {x: 2, y: 5},
+          {x: 3, y: 0},
+      ],
+
+      margin : {
+        top: 20, right: 20, bottom: 30, left: 50
+      },
+      width: 500,
+      height: 200,
+      plotWidth : 0,
+      plotHeight : 0
     };
   }
 
@@ -69,6 +98,22 @@ class MortgageComparison extends React.Component {
     this.recalcMortgages()
   }
 
+  setPlotWidth() {
+    this.setState({
+      plotWidth : this.state.width - this.state.margin.left - this.state.margin.right
+    })
+  }
+
+  setPlotHeight() {
+    this.setState({
+      plotHeight : this.state.height - this.state.margin.top - this.state.margin.bottom
+    })
+  }
+
+  componentDidMoount() {
+    this.setPlotWidth()
+    this.setPlotHeight()
+  }
 
     render() {
       return (
@@ -77,7 +122,7 @@ class MortgageComparison extends React.Component {
             <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
           </div>
           <div className='layoutRow'>
-            <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
+            <FixedExpenses updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
           </div>
           <div className='layoutRow'>
             <div className='sideBySideColumn'>
@@ -91,7 +136,31 @@ class MortgageComparison extends React.Component {
             <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
           </div>
           <div className='layoutRow'>
-            <Graph />
+            <div className='sideBySideColumn'>
+              <Graph
+                title="hello"
+                width={this.state.width}
+                height={this.state.height}
+                plotWidth={this.state.plotWidth}
+                plotHeight={this.state.plotHeight}
+                dummyData={this.state.dummyData}
+                margin={this.state.margin}
+              />
+            </div>
+            <div className='sideBySideColumn'>
+              <Graph
+                title="hello"
+                width={this.state.width}
+                height={this.state.height}
+                plotWidth={this.state.plotWidth}
+                plotHeight={this.state.plotHeight}
+                dummyData={this.state.dummyData}
+                margin={this.state.margin}
+              />
+            </div>
+            <div className='layoutRow'>
+              <BarChart termData={this.state.termData} />
+            </div>
           </div>
         </div>
       )
