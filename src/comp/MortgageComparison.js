@@ -160,7 +160,9 @@ class MortgageComparison extends React.Component {
               y={d => d[1]}
               yAxis={{
                 tickFormat: format('$,'),
+                axisLabel: '$ Paid'
               }}
+              xAxis={{axisLabel: 'Month'}}
               margin={{top:10, left: 100}}
               
             />
