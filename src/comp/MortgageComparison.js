@@ -1,12 +1,15 @@
 import React from 'react';
+import NVD3Chart from 'react-nvd3'
+import { format} from 'd3';
 
 import LoanAmountDetails from './LoanAmountDetails.js'
 import FixedExpenses from './FixedExpenses.js'
 import LoanDetails from './LoanDetails.js'
 import ComparisonResults from './ComparisonResults.js'
-import Graph from './Graph.js'
-import BarChart from './BarChart.js'
+
 import Mortgage from '../lib/mortgage.js'
+
+import './../css/nv.d3.css'
 
 class MortgageComparison extends React.Component {
 
@@ -110,12 +113,25 @@ class MortgageComparison extends React.Component {
     })
   }
 
+  buildGraphData(mortgage){
+    // mortgage is mortgage object from state
+    const months = Array.from(new Array(mortgage.months), (x,i) => i + 1) // to correct for off-by-one error
+
+    let series = {
+      'key': 'Series1',
+      'values': months.map(i => [i, mortgage.paidToDate(i)]),
+      'color': 'blue'
+    }
+    return series;
+  }
+
   componentDidMoount() {
     this.setPlotWidth()
     this.setPlotHeight()
   }
 
     render() {
+      const mortAData = this.buildGraphData(this.state.mortA);
       return (
         <div>
           <div className='layoutRow'>
@@ -136,31 +152,18 @@ class MortgageComparison extends React.Component {
             <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
           </div>
           <div className='layoutRow'>
-            <div className='sideBySideColumn'>
-              <Graph
-                title="hello"
-                width={this.state.width}
-                height={this.state.height}
-                plotWidth={this.state.plotWidth}
-                plotHeight={this.state.plotHeight}
-                dummyData={this.state.dummyData}
-                margin={this.state.margin}
-              />
-            </div>
-            <div className='sideBySideColumn'>
-              <Graph
-                title="hello"
-                width={this.state.width}
-                height={this.state.height}
-                plotWidth={this.state.plotWidth}
-                plotHeight={this.state.plotHeight}
-                dummyData={this.state.dummyData}
-                margin={this.state.margin}
-              />
-            </div>
-            <div className='layoutRow'>
-              <BarChart termData={this.state.termData} />
-            </div>
+            <NVD3Chart
+              id="chart"
+              type="lineChart"
+              datum={[mortAData]}
+              x={d => d[0]}
+              y={d => d[1]}
+              yAxis={{
+                tickFormat: format('$,'),
+              }}
+              margin={{top:10, left: 100}}
+              
+            />
           </div>
         </div>
       )

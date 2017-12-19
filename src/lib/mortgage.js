@@ -76,4 +76,8 @@ export default class Mortgage {
     // this should be improved but for now it does someting useful
     return (this._minimumMonthlyPayment * this.months)
   }
+
+  paidToDate(month){
+    return this._minimumMonthlyPayment * month;
+  }
 };
