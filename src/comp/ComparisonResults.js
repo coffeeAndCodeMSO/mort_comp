@@ -17,9 +17,9 @@ const ComparisonResults = ({ mortA, mortB }) => {
 
   paymentDiffPct = () => mortA.minimumMonthlyPayment / mortB.minimumMonthlyPayment;
 
-  totalPaymentDiff = () => mortA.totalLifetimePayments - mortB.totalLifetimePayments;
+  totalPaymentDiff = () => mortA.totalLifetimeCost - mortB.totalLifetimeCost;
 
-  totalPaymentDiffPct = () => 1 - (mortA.totalLifetimePayments / mortB.totalLifetimePayments);
+  totalPaymentDiffPct = () => 1 - (mortA.totalLifetimeCost / mortB.totalLifetimeCost);
 
   paymentDiffStr = () => {
     const moreOrLess =  mortA.minimumMonthlyPayment > mortB.minimumMonthlyPayment ? "more" : "less";
@@ -27,12 +27,12 @@ const ComparisonResults = ({ mortA, mortB }) => {
   };
 
   totalPaymentDiffStr = () => {
-    const moreOrLess =  mortA.totalLifetimePayments > mortB.totalLifetimePayments ? "more" : "less";
+    const moreOrLess =  mortA.totalLifetimeCost > mortB.totalLifetimeCost ? "more" : "less";
     return (`Mortgage A will be $ ${moneyize(Math.abs(totalPaymentDiff()))} ${moreOrLess} (%${printableSingleDecimalPercent(totalPaymentDiffPct())}) over the life of the loan`);
   };
 
 timeDiffStr = () => {
-  const yearsDiff = (mortA.months - mortB.months) / 12.0;
+  const yearsDiff = (mortA.totalNumberOfPayments - mortB.totalNumberOfPayments) / 12.0;
   return `Mortgage A  will be payed off ${Math.abs(yearsDiff.toFixed(1))} years ${yearsDiff < 0 ? 'sooner' : 'later'}`;
 };
 

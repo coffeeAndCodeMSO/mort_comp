@@ -11,8 +11,8 @@ class MortgageComparison extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mortA: new Mortgage(400000, 0.03250, 15, 350.00),
-      mortB: new Mortgage(400000, 0.03930, 30, 350.00),
+      mortA: new Mortgage(400000, 0.03250, 15, 350.00, false),
+      mortB: new Mortgage(400000, 0.04130, 30, 350.00, false),
 
       loanAmount: 400000,
       propertyTax: 3000,
@@ -25,7 +25,12 @@ class MortgageComparison extends React.Component {
 
       interestRates: {
         mortA: 0.03250,
-        mortB: 0.03930
+        mortB: 0.04130
+      },
+
+      makeExtraPayment: {
+        mortA: false,
+        mortB: false
       }
     };
   }
@@ -49,8 +54,20 @@ class MortgageComparison extends React.Component {
 
   recalcMortgages = () => {
     this.setState({
-      mortA: new Mortgage(this.state.loanAmount, this.state.interestRates.mortA, this.state.years.mortA, this.totalMonthlyExpenses()),
-      mortB: new Mortgage(this.state.loanAmount, this.state.interestRates.mortB, this.state.years.mortB, this.totalMonthlyExpenses()),
+      mortA: new Mortgage(
+        this.state.loanAmount,
+        this.state.interestRates.mortA,
+        this.state.years.mortA,
+        this.totalMonthlyExpenses(),
+        this.state.makeExtraPayment.mortA
+      ),
+      mortB: new Mortgage(
+        this.state.loanAmount,
+        this.state.interestRates.mortB,
+        this.state.years.mortB,
+        this.totalMonthlyExpenses(),
+        this.state.makeExtraPayment.mortB
+      ),
     })
   }
 
@@ -68,30 +85,36 @@ class MortgageComparison extends React.Component {
     this.recalcMortgages()
   }
 
+  toggleMortgageExtraPayment = (mortId, trueOrFalse) => {
+    var newState = { makeExtraPayment: this.state.makeExtraPayment }
+    newState.makeExtraPayment[mortId] = !newState.makeExtraPayment[mortId];
+    this.setState(newState)
+    this.recalcMortgages()
+  }
 
-    render() {
-      return (
-        <div>
-          <div className='layoutRow'>
-            <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
+  render() {
+    return (
+      <div>
+        <div className='layoutRow'>
+          <LoanAmountDetails updateCommonMortgageInput={this.updateCommonMortgageInput} loanAmount={this.state.loanAmount} />
+        </div>
+        <div className='layoutRow'>
+          <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
+        </div>
+        <div className='layoutRow'>
+          <div className='sideBySideColumn'>
+            <LoanDetails id='mortA' mortgage={this.state.mortA} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears}  toggleMortgageExtraPayment={this.toggleMortgageExtraPayment} />
           </div>
-          <div className='layoutRow'>
-            <FixedExpenses     updateCommonMortgageInput={this.updateCommonMortgageInput} insurance={this.state.insurance} propertyTax={this.state.propertyTax} />
-          </div>
-          <div className='layoutRow'>
-            <div className='sideBySideColumn'>
-              <LoanDetails id='mortA' mortgage={this.state.mortA} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
-            </div>
-            <div className='sideBySideColumn'>
-              <LoanDetails id='mortB' mortgage={this.state.mortB}  updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} />
-            </div>
-          </div>
-          <div className='layoutRow'>
-            <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
+          <div className='sideBySideColumn'>
+            <LoanDetails id='mortB' mortgage={this.state.mortB} updateinterestRate={this.updateMortgageInterestRate} updateMortgageYears={this.updateMortgageYears} toggleMortgageExtraPayment={this.toggleMortgageExtraPayment} />
           </div>
         </div>
-      )
-    }
+        <div className='layoutRow'>
+          <ComparisonResults mortA={this.state.mortA} mortB={this.state.mortB}/>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default MortgageComparison;
