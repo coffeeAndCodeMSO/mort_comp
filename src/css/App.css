@@ -15,8 +15,10 @@ body {
 }
 
 .App-header {
-  margin-left: 5px;
-  margin-right: 5px;
+  background-color: #222;
+  padding: 20px;
+  color: white;
+  text-align: center;
 }
 
 /* Macro layout styling */

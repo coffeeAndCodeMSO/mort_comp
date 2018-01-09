@@ -1,0 +1,10 @@
+.graph-line {
+    fill: none;
+    stroke: blue;
+    stroke-width: 2px;
+}
+
+.graph-axis {
+    fill: none;
+    stroke: black;
+}

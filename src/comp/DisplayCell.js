@@ -1,5 +1,4 @@
 import React from 'react';
-import { moneyize } from '../lib/formatting_helpers'
 
 class DisplayCell extends React.Component {
   render(){
