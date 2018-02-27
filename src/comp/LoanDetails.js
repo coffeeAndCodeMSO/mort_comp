@@ -41,20 +41,32 @@ class LoanDetails extends React.Component {
         />
 
         <DisplayCell
-          label="Loan payment, monthly"
-          value={this.props.mortgage.principalAndInterestPayment}
-          unitLabel='$'
-          formatFunction={moneyize}
-        />
-        <DisplayCell
-          label="Total cost, monthly"
+          label="Minimum payment, monthly"
           value={this.props.mortgage.minimumMonthlyPayment}
           unitLabel='$'
           formatFunction={moneyize}
         />
+
+        <div className="input-group">
+          <div className="input-label">Make 13th payment each year?</div>
+          <input className='checkboxInput'
+            type='checkbox'
+            value={this.props.mortgage.makeExtraPayment}
+            onChange={(event) => this.props.toggleMortgageExtraPayment(this.props.id, event.target.value)}
+          />
+        </div>
+
         <DisplayCell
-          label="Total lifetime payments (naive)"
-          value={this.props.mortgage.totalLifetimePayments}
+          label="Total lifetime cost"
+          value={this.props.mortgage.totalLifetimeCost}
+          unitLabel='$'
+          formatFunction={moneyize}
+        />
+
+
+        <DisplayCell
+          label="Total years to pay off"
+          value={this.props.mortgage.totalNumberOfPayments / 12.0}
           unitLabel='$'
           formatFunction={moneyize}
         />
