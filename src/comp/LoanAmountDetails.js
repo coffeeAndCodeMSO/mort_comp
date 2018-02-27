@@ -4,7 +4,7 @@ import { moneyize, printableSingleDecimalPercent } from '../lib/formatting_helpe
 import InputCell from './InputCell.js';
 import DisplayCell from './DisplayCell.js';
 
-class LoanAmountDetails extends React.Component {
+export default class LoanAmountDetails extends React.Component {
 
   constructor(props) {
     super(props);
@@ -39,6 +39,9 @@ class LoanAmountDetails extends React.Component {
       case "loanAmount":
         this.setState({loanAmount: newValue, downAmount: '', downPercent: '', houseCost: ''});
         break;
+      default:
+        this.setState({loanAmount: newValue, downAmount: '', downPercent: '', houseCost: ''});
+      break;
     }
     this.setState(newState);
     this.props.updateCommonMortgageInput("loanAmount", this.state.loanAmount)
@@ -76,5 +79,3 @@ class LoanAmountDetails extends React.Component {
     );
   }
 }
-
-export default LoanAmountDetails;

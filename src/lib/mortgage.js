@@ -2,8 +2,6 @@
 Mortgage is a class that handles all the math involved in a Mortgage
 */
 
-import { moneyize } from './formatting_helpers'
-
 export default class Mortgage {
 
   constructor(loanAmount, interestRate, years, fixedMonthlyExpenses, makeExtraPayment=false) {
@@ -63,7 +61,7 @@ export default class Mortgage {
   calculatePayments() {
     var term1 = Math.pow((1.0 + this.monthlyInterestRate), this.months);
     var term2  = ((this.loanAmount * this.monthlyInterestRate * term1) / (term1 - 1.0));
-    this._principalAndInterestPayment  = (parseInt(term2*100)) / 100.0;
+    this._principalAndInterestPayment  = (parseInt(term2*100, 10)) / 100.0;
     this._minimumMonthlyPayment = this._principalAndInterestPayment + this.fixedMonthlyExpenses;
   }
 
@@ -128,5 +126,9 @@ export default class Mortgage {
 
   get amortizationTable() {
     return this._ammortizationTable;
+  }
+
+  paidToDate(month){
+    return this._minimumMonthlyPayment * month;
   }
 };

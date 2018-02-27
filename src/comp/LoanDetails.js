@@ -1,5 +1,5 @@
 import React from 'react';
-import { moneyize, printableMonthlyInterestRate, printableAnnualInterestRate } from '../lib/formatting_helpers'
+import { moneyize, printableMonthlyInterestRate } from '../lib/formatting_helpers'
 
 import InputCell from './InputCell.js';
 import DisplayCell from './DisplayCell.js';
@@ -7,7 +7,7 @@ import DisplayCell from './DisplayCell.js';
 class LoanDetails extends React.Component {
 
   render() {
-    const letter = this.props.id == "mortA" ? "A" : "B"
+    const letter = this.props.id === "mortA" ? "A" : "B"
     return (
       <div className='relatedSectionOfNumbers'>
         <div className="section-header">
